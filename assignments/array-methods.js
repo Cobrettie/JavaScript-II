@@ -494,6 +494,55 @@ console.log(ticketPriceTotal);
 
 // Problem 1
 
+// Return an ordered list of first names, sorted alphabetically
+
+let fnamesArr = [];
+
+runners.forEach(item => fnamesArr.push((`${item.first_name}, ${item.last_name}`)));
+
+fnamesArr.sort(function (a, b) {
+    let nameA = a.toUpperCase(); // ignore upper and lower case
+    let nameB = b.toUpperCase(); // ignore upper and lower case
+
+    if (nameA < nameB) {
+        return -1;
+    }
+
+    if (nameA > nameB) {
+        return 1;
+    }
+
+    // names must be equal
+
+    return 0;
+});
+
+console.log(fnamesArr);
+
+
+
 // Problem 2
 
+// Obtain the average donation amount
+
+let donationAverage = [];
+
+donationAverage = runners.reduce((tracker, item) =>
+    tracker + item.donation, 0);
+
+donationAverage /= runners.length;
+
+console.log(Math.round(donationAverage));
+
+
+
 // Problem 3
+
+// Problem 3 - Create a list of those who donated more than 100 dollars, return first name, last name, as well as amount donated. Then sort from highest to lowest for donations.
+let topDonators = [];
+topDonators = runners
+    .filter(item => item.donation > 100)
+    .sort((a, b) => b.donation - a.donation)
+    .map(item => `${item.first_name} ${item.last_name} - $${item.donation}`);
+
+console.log(topDonators);
